@@ -36,9 +36,16 @@ export class AuthService{
       const user = await this.userEmailFinder.invoque(userEmail);
 
       const payload = {
-        user: user,
-        token: this.jwtService.sign(user,{secret:'secret',expiresIn:'46s'})
-      };
+        id: user.id,
+        nickname:user.nickname,
+        email:user.email,
+        token: this.jwtService.sign(
+          {
+            id:user.id,
+            nickname:user.nickname,
+            email:user.email},
+            {secret:'secret',expiresIn:'40s'}
+        )};
 
       return payload;
 
