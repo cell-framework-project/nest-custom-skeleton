@@ -35,8 +35,8 @@ export class AuthService{
       const user = await this.userEmailFinder.invoque(userEmail);
 
       const payload = {
-        user: user.getViewModel(),
-        token: this.jwtService.sign(user.getViewModel(),{secret:'secret',expiresIn:'46s'})
+        user: user,
+        token: this.jwtService.sign(user,{secret:'secret',expiresIn:'46s'})
       };
 
       return new Authentication( validation, payload );

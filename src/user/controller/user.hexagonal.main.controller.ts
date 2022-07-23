@@ -10,14 +10,14 @@ constructor( private readonly userFinder: UserFinder, private readonly userListF
   @Get()
   index(@Res() res: Response){
     this.userListFinder.invoque().then(async (users) => {
-      res.status(HttpStatus.OK).json(users.getViewModel());
+      res.status(HttpStatus.OK).json(users);
     });
   }
 
   @Get(':id')
   get(@Param() params, @Res() res: Response){
     this.userFinder.invoque(params.id).then(async (user) => {
-      res.status(HttpStatus.OK).json(user.getViewModel());
+      res.status(HttpStatus.OK).json(user);
     });
   }
 

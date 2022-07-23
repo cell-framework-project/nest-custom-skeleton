@@ -7,11 +7,11 @@ export class UserCreatedEvent{
   constructor(user:User){
     this.data={
       id:user.getId(),
-      nickname:user.getNickname().getValue(),
-      email:user.getEmail().getValue(),
+      nickname:user.getNickname().value,
+      email:user.getEmail().value,
       name:{
-        first:user.getName().getFirst(),
-        last:user.getName().getLast()
+        first:user.getName().first,
+        last:user.getName().last
       },
       creationDateTime:user.getCreationDateTime().toDateString()
     }

@@ -1,13 +1,13 @@
 export class PasswordValueObject{
 
-  value: string;
+  readonly value: string;
 
   constructor(value:string){
     this.value = value;
   }
 
-  getValue():string{
-      return this.value;
+  static create(value:string):PasswordValueObject{
+    return new PasswordValueObject(value);
   }
 
 }
