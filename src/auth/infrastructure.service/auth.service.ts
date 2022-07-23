@@ -1,11 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserEmailAuthenticator } from 'src/user/application.service/user.email.authenticator';
 import { UserEmailFinder } from 'src/user/application.service/user.email.finder';
 import { UserEmail } from 'src/user/domain.model/user.email';
 import { UserPassword } from 'src/user/domain.model/user.password';
 import { UserEmailAuthenticateDto } from 'src/user/dto/user.email.authenticate.dto';
-import { Authentication } from './authentication';
 
 
 @Injectable()
@@ -26,8 +25,10 @@ export class AuthService{
 
     if(!validation.isValid()){
 
-      return new Authentication( validation, {  })
+      throw new UnauthorizedException;
 
+      return null;
+      
     }
 
     else{
@@ -39,7 +40,7 @@ export class AuthService{
         token: this.jwtService.sign(user,{secret:'secret',expiresIn:'46s'})
       };
 
-      return new Authentication( validation, payload );
+      return payload;
 
     }
 
