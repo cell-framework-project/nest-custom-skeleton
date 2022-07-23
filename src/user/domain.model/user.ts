@@ -1,0 +1,72 @@
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { UserName } from './user.name';
+import { UserEmail } from './user.email';
+import { UserNickname } from './user.nickname';
+import { UserHashedPassword } from './user.hashed.password';
+import { UserPassword } from './user.password';
+import { AggregateRoot } from '@nestjs/cqrs';
+import { UserCreatedEvent } from '../cqrs/event/user.created.event';
+
+@Entity({name:'user'})
+export class User extends AggregateRoot {
+
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column( ()=> UserNickname,{ prefix:false } )
+  nickname: UserNickname;
+
+  @Column( ()=> UserEmail,{ prefix:false } )
+  email:UserEmail;
+
+  @Column( ()=> UserName,{ prefix:false } )
+  name:UserName;
+
+  @Column( ()=> UserHashedPassword,{ prefix:false } )
+  hashedPassword: UserHashedPassword;
+
+  @Column({ name:'creation_date_time' } )
+  creationDateTime:Date;
+
+  constructor(nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName,creationDateTime:Date) {
+    super();
+    this.nickname = nickname;
+    this.email = email;
+    this.hashedPassword = hashedPassword;
+    this.name = name;
+    this.creationDateTime = creationDateTime;
+  }
+
+  getId():string{
+    return this.id;
+  }
+
+  getNickname():UserNickname{ 
+    return this.nickname;
+  }
+
+  getEmail():UserEmail{
+    return this.email;
+  }
+
+  getName():UserName{
+    return this.name;
+  }
+
+  getCreationDateTime():Date{
+    return this.creationDateTime;
+  }
+
+  comparePassword(password:UserPassword):boolean{
+    return this.hashedPassword.assert(password);
+  }
+
+  static create(nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName):User {
+
+    const user = new User(nickname,email,hashedPassword,name,new Date);
+    user.apply( new UserCreatedEvent(user) );
+    return user;
+
+  }
+
+}
