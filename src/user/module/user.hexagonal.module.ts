@@ -9,7 +9,7 @@ import { UserEmailAuthenticator } from '../application.service/user.email.authen
 import { UserHexagonalSigninController } from '../controller/user.hexagonal.signin.controller';
 import { UserFinder } from '../application.service/user.finder';
 import { CqrsModule } from '@nestjs/cqrs';
-import { UserAuthService } from '../auth/user.auth.service';
+import { UserAuthService } from '../application.service/user.auth.service';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({

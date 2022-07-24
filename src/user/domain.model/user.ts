@@ -6,6 +6,7 @@ import { UserHashedPassword } from './user.hashed.password';
 import { UserPassword } from './user.password';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { UserCreatedEvent } from '../cqrs/event/user.created.event';
+import { v4 as uuid4 } from 'uuid';
 
 @Entity({name:'user'})
 export class User extends AggregateRoot {
@@ -28,8 +29,9 @@ export class User extends AggregateRoot {
   @Column({ name:'creation_date_time' } )
   creationDateTime:Date;
 
-  constructor(nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName,creationDateTime:Date) {
+  constructor(id:string,nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName,creationDateTime:Date) {
     super();
+    this.id = id;
     this.nickname = nickname;
     this.email = email;
     this.hashedPassword = hashedPassword;
@@ -63,7 +65,7 @@ export class User extends AggregateRoot {
 
   static create(nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName):User {
 
-    const user = new User(nickname,email,hashedPassword,name,new Date);
+    const user = new User(uuid4(),nickname,email,hashedPassword,name,new Date);
     user.apply( new UserCreatedEvent(user) );
     return user;
 

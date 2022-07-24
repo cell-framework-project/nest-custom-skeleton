@@ -16,10 +16,7 @@ export class UserResult{
 
     this.email=user.getEmail().value,
     
-    this.name={
-      first:user.getName().first,
-      last:user.getName().last
-    },
+    this.name={ first:user.getName().first, last:user.getName().last },
 
     this.creationDateTime=user.getCreationDateTime().toLocaleTimeString()
     
