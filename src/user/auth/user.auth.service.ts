@@ -1,3 +1,4 @@
+import { Inject } from "@nestjs/common";
 import { UserEmail } from "../domain.model/user.email";
 import { UserPassword } from "../domain.model/user.password";
 import { UserPasswordValidation } from "../domain.model/user.password.validation";
@@ -6,7 +7,7 @@ import { UserTokenFactory } from "./user.token.factory";
 
 export class UserAuthService{
 
-  constructor(protected userRepository:UserRepository,protected userTokenFactory:UserTokenFactory ){  }
+  constructor( @Inject('USER_REPOSITORY') protected userRepository:UserRepository,protected userTokenFactory:UserTokenFactory ){  }
 
   async invoque(email:UserEmail,password:UserPassword):Promise<any>{
 
