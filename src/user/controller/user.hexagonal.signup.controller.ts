@@ -1,4 +1,4 @@
-import { Controller,  Get, Res, HttpStatus, Body, Post } from '@nestjs/common';
+import { Controller,  Get, Res, HttpStatus, Body, Post, ValidationPipe } from '@nestjs/common';
 import { Response } from 'express';
 import { UserCreator } from '../application.service/user.creator';
 import { UserCreateDto } from '../dto/user.create.dto';
@@ -12,7 +12,7 @@ export class UserHexagonalSignupController {
 constructor(private readonly userCreator: UserCreator) {}
 
   @Post('signup')
-  signup(@Res() res: Response, @Body() userCreateDto: UserCreateDto){
+  signup(@Res() res: Response, @Body(new ValidationPipe()) userCreateDto: UserCreateDto){
 
     //value objects from DTO
     const password:UserHashedPassword =  UserHashedPassword.create(userCreateDto.password);
