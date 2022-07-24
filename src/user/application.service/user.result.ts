@@ -11,13 +11,9 @@ export class UserResult{
   constructor(user:User){
 
     this.id=user.getId(),
-
     this.nickname=user.getNickname().value,
-
     this.email=user.getEmail().value,
-    
     this.name={ first:user.getName().first, last:user.getName().last },
-
     this.creationDateTime=user.getCreationDateTime().toLocaleTimeString()
     
   }
