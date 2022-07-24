@@ -11,6 +11,14 @@ import { UserFinder } from '../application.service/user.finder';
 import { CqrsModule } from '@nestjs/cqrs';
 import { UserAuthService } from '../application.service/user.auth.service';
 import { JwtModule } from '@nestjs/jwt';
+import { UserCreateCommandHandler } from '../cqrs/command/user.create.command.handler';
+import { UserCreatedEventEventHandler } from '../cqrs/event/user.created.event.handler';
+import { UserListFindQueryHandler } from '../cqrs/query/user.list.find.query.handler';
+import { UserFindQueryHandler } from '../cqrs/query/user.find.query.handler';
+
+export const CommandHandlers = [UserCreateCommandHandler];
+export const EventHandlers = [UserCreatedEventEventHandler];
+export const QueryHandlers =[UserListFindQueryHandler,UserFindQueryHandler];
 
 @Module({
   imports:[
