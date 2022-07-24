@@ -11,14 +11,17 @@ import { EventPublisher } from '@nestjs/cqrs';
 @Injectable()
 export class UserCreator {
   
-  constructor(@Inject('USER_REPOSITORY') private repository: UserRepository, private publisher:EventPublisher) {}
+  constructor(@Inject('USER_REPOSITORY') private repository: UserRepository, private publisher:EventPublisher) {  }
 
   async invoque(nickname:UserNickname,email:UserEmail,password:UserHashedPassword,name:UserName):Promise<void>{
 
     this.repository.checkAvailability(nickname,email).then(async(validation:UserAvailabilityValidation)=>{
 
       if(!validation.isValid()){
+        
         validation.getErrors().forEach(error => { throw error; });
+        return null;
+
       }
 
       else{
@@ -28,6 +31,8 @@ export class UserCreator {
 
         const userEvents = this.publisher.mergeObjectContext(user)
         userEvents.commit();
+
+        return null;
 
       }
 

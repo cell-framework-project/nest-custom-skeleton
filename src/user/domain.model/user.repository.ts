@@ -23,9 +23,6 @@ export class UserRepository {
     const emailUserCount = (await this.userRepository.find({where:{email:{value:email.value}}})).length;
     const nicknameUserCount = (await this.userRepository.find({where:{nickname:{value:nickname.value}}})).length;
 
-    console.log(emailUserCount);
-    console.log(nicknameUserCount);
-
     if(emailUserCount>0){
       validation.addError(new ForbiddenException) 
     }

@@ -2,10 +2,9 @@ import { IsAlpha, IsAlphanumeric, IsEmail, IsNotEmpty, MaxLength, MinLength } fr
 
 export class UserCreateDto {
 
-  @MinLength(8)
+  @MinLength(6)
   @MaxLength(32)
   @IsNotEmpty()
-  @IsAlphanumeric()
   nickname: string;
 
   @IsNotEmpty()
@@ -13,7 +12,7 @@ export class UserCreateDto {
   email: string;
 
   @IsNotEmpty()
-  @MinLength(8)
+  @MinLength(6)
   @MaxLength(32)
   password: string;
 

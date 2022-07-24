@@ -12,7 +12,7 @@ export class UserHexagonalSignupController {
 constructor(private readonly userCreator: UserCreator) {  }
 
   @Post('signup')
-  signup(@Res() res: Response, @Body(new ValidationPipe()) userCreateDto: UserCreateDto){
+  signup(@Body(new ValidationPipe()) userCreateDto: UserCreateDto){
 
     //value objects from DTO
     const password =  UserHashedPassword.create(userCreateDto.password);
@@ -21,9 +21,7 @@ constructor(private readonly userCreator: UserCreator) {  }
     const nickname = UserNickname.create(userCreateDto.nickname);
 
     //application service with value objects
-    this.userCreator.invoque(nickname,email,password,name).then(async ()=>{
-      res.status(HttpStatus.CREATED).send();
-    });
+    return this.userCreator.invoque(nickname,email,password,name);
 
   }
 
