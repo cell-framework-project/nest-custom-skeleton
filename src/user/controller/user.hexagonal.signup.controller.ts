@@ -15,7 +15,7 @@ constructor(private readonly userCreator: UserCreator) {}
   signup(@Res() res: Response, @Body(new ValidationPipe()) userCreateDto: UserCreateDto){
 
     //value objects from DTO
-    const password:UserHashedPassword =  UserHashedPassword.create(userCreateDto.password);
+    const password =  UserHashedPassword.create(userCreateDto.password);
     const name = UserName.create(userCreateDto.firstName,userCreateDto.lastName);
     const email = UserEmail.create(userCreateDto.email);
     const nickname = UserNickname.create(userCreateDto.nickname);
