@@ -10,9 +10,7 @@ import { UserPasswordValidation } from './user.password.validation';
 @Injectable()
 export class UserRepository {
   
-  constructor(private userRepository: Repository<User>,) { 
-
-  }
+  constructor(private userRepository: Repository<User>,) {  }
 
   save(user:User):void{
     this.userRepository.manager.save(user);
@@ -61,7 +59,6 @@ export class UserRepository {
   async searchByEmail(email:UserEmail):Promise<User>{
     return this.userRepository.findOne({where:{email:{value:email.value}}});
   }
-
 
   async searchByNickname(nickname:UserNickname):Promise<User>{
     return this.userRepository.findOne({where:{nickname:{value:nickname.value}}});

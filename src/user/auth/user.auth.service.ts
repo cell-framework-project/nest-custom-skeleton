@@ -22,8 +22,6 @@ export class UserAuthService{
 
       const user = await this.userRepository.searchByEmail(email);
 
-      console.log(user);
-
       const payload:object={
         id:user.getId(),
         nickname:user.getNickname().value,
@@ -31,8 +29,6 @@ export class UserAuthService{
         token:this.jwtService.sign({id:user.getId(),nickname:user.getNickname().value,email:user.getEmail().value},{secret:'secret'})
       }
 
-      console.log(payload);
-  
       return payload;
   
     }
