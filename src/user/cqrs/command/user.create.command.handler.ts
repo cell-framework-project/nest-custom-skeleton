@@ -1,4 +1,4 @@
-import { CommandHandler,  EventBus,  EventPublisher,  ICommandHandler } from "@nestjs/cqrs";
+import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { UserEmail } from "../../domain.model/user.email";
 import { UserHashedPassword } from "../../domain.model/user.hashed.password";
 import { UserName } from "../../domain.model/user.name";

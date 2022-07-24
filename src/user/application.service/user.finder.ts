@@ -5,7 +5,7 @@ import { UserResult } from './user.result';
 @Injectable()
 export class UserFinder {
   
-  constructor( @Inject('USER_REPOSITORY') private repository: UserRepository ) {}
+  constructor( @Inject('USER_REPOSITORY') private repository:UserRepository ) {}
 
   async invoque(id:string):Promise<UserResult>{
 
