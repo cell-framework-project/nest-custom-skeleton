@@ -9,10 +9,12 @@ import { UserEmailAuthenticator } from '../application.service/user.email.authen
 import { UserHexagonalSigninController } from '../controller/user.hexagonal.signin.controller';
 import { UserFinder } from '../application.service/user.finder';
 import { CqrsModule } from '@nestjs/cqrs';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { UserTokenFactory } from '../auth/user.token.factory';
 
 @Module({
-  imports:[DatabaseModule,CqrsModule],
+  imports:[DatabaseModule,CqrsModule,JwtModule],
   controllers:[UserHexagonalMainController,UserHexagonalSignupController,UserHexagonalSigninController],
-  providers:[...userProviders,UserListFinder,UserFinder,UserCreator,UserEmailAuthenticator]
+  providers:[...userProviders,UserListFinder,UserFinder,UserCreator,UserEmailAuthenticator,JwtService,UserTokenFactory]
 })
 export class UserHexagonalModule {  }

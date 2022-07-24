@@ -11,7 +11,7 @@ export class UserTokenFactory {
       id:user.getId(),
       nickname:user.getNickname().value,
       email:user.getEmail().value,
-      token:this.jwtService.sign({id:user.getId(),nickname:user.getNickname().value,email:user.getEmail().value})
+      token:this.jwtService.sign({id:user.getId(),nickname:user.getNickname().value,email:user.getEmail().value},{secret:'secret'})
     }
 
     return payload;
