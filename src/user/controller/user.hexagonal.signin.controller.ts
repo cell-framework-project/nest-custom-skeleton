@@ -1,4 +1,4 @@
-import { Controller, Res, HttpStatus, Body, Post } from '@nestjs/common';
+import { Controller, Res,  Body, Post } from '@nestjs/common';
 import { Response } from 'express';
 import { UserEmailAuthenticateDto } from '../dto/user.email.authenticate.dto';
 import { UserEmail } from '../domain.model/user.email';
@@ -10,12 +10,12 @@ export class UserHexagonalSigninController {
 constructor(private readonly userAuthService:UserAuthService) {}
 
   @Post('signin')
-  signin(@Res() res: Response, @Body() userAuthDto: UserEmailAuthenticateDto){
+  signin(@Body() userAuthDto: UserEmailAuthenticateDto){
 
     const email:UserEmail = UserEmail.create(userAuthDto.email);
     const password:UserPassword = new UserPassword(userAuthDto.password);
 
-    this.userAuthService.invoque(email,password);
+    return this.userAuthService.invoque(email,password);
 
   }
 

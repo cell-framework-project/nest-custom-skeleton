@@ -17,7 +17,7 @@ import { JwtModule } from '@nestjs/jwt';
   imports:[
     DatabaseModule,
     CqrsModule,
-    JwtModule.registerAsync({useFactory: () => {return {signOptions: { expiresIn: '4d' },secret: 'secret',};}})
+    JwtModule.registerAsync({useFactory: () => {return {signOptions: { expiresIn: '4d' },secret: 'secret'};}})
   ],
   controllers:[UserHexagonalMainController,UserHexagonalSignupController,UserHexagonalSigninController],
   providers:[...userProviders,UserListFinder,UserFinder,UserCreator,UserEmailAuthenticator,UserTokenFactory,UserAuthService]
