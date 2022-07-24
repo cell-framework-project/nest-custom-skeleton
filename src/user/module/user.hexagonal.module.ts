@@ -11,10 +11,11 @@ import { UserFinder } from '../application.service/user.finder';
 import { CqrsModule } from '@nestjs/cqrs';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { UserTokenFactory } from '../auth/user.token.factory';
+import { UserAuthService } from '../auth/user.auth.service';
 
 @Module({
   imports:[DatabaseModule,CqrsModule,JwtModule],
   controllers:[UserHexagonalMainController,UserHexagonalSignupController,UserHexagonalSigninController],
-  providers:[...userProviders,UserListFinder,UserFinder,UserCreator,UserEmailAuthenticator,JwtService,UserTokenFactory]
+  providers:[...userProviders,UserListFinder,UserFinder,UserCreator,UserEmailAuthenticator,JwtService,UserTokenFactory,UserAuthService]
 })
 export class UserHexagonalModule {  }
