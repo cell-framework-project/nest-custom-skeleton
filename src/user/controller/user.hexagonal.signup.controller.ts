@@ -1,4 +1,4 @@
-import { Controller,  Get, Res, HttpStatus, Body, Post, ValidationPipe } from '@nestjs/common';
+import { Controller, Res, HttpStatus, Body, Post, ValidationPipe } from '@nestjs/common';
 import { Response } from 'express';
 import { UserCreator } from '../application.service/user.creator';
 import { UserCreateDto } from '../dto/user.create.dto';
@@ -9,7 +9,7 @@ import { UserNickname } from '../domain.model/user.nickname';
 
 @Controller('user-hex')
 export class UserHexagonalSignupController {
-constructor(private readonly userCreator: UserCreator) {}
+constructor(private readonly userCreator: UserCreator) {  }
 
   @Post('signup')
   signup(@Res() res: Response, @Body(new ValidationPipe()) userCreateDto: UserCreateDto){
