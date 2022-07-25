@@ -1,10 +1,10 @@
-import { Inject } from "@nestjs/common";
+import { HttpException, Inject } from "@nestjs/common";
 import { EventPublisher } from "@nestjs/cqrs";
 import { JwtService } from "@nestjs/jwt";
 import { UserEmail } from "../domain.model/user.email";
 import { UserPassword } from "../domain.model/user.password";
-import { UserPasswordValidation } from "../domain.model/user.password.validation";
 import { UserRepository } from "../domain.model/user.repository";
+
 
 export class UserAuthService{
 
@@ -16,12 +16,11 @@ export class UserAuthService{
 
   async invoque(email:UserEmail,password:UserPassword):Promise<any>{
 
-    //validation vias repository
-    const validation:UserPasswordValidation = await this.userRepository.validatePasswordByEmail(email,password);
+    const errors:HttpException[] = await this.userRepository.validatePasswordByEmail(email,password);
 
     //validation fails then displays error
-    if( !validation.isValid() ){
-      throw validation.getErrors()[0];
+    if(errors.length>0){
+      errors.forEach((error:HttpException) => { throw error; });
       return null;
     }
 

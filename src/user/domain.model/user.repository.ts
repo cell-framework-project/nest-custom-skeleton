@@ -1,11 +1,10 @@
-import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { UserEmail } from './user.email';
 import { User } from './user';
 import { UserNickname } from './user.nickname';
 import { UserPassword } from './user.password';
-import { UserAvailabilityValidation } from './user.availability.validation';
-import { UserPasswordValidation } from './user.password.validation';
+
 
 @Injectable()
 export class UserRepository {
@@ -16,42 +15,42 @@ export class UserRepository {
     this.userRepository.manager.save(user);
   }
 
-  async checkAvailability(nickname:UserNickname,email:UserEmail):Promise<UserAvailabilityValidation>{
+  async checkAvailability(nickname:UserNickname,email:UserEmail):Promise<HttpException[]>{
 
-    const validation:UserAvailabilityValidation = new UserAvailabilityValidation;
+    const errors:HttpException[]=[];
 
     const emailUserCount = (await this.userRepository.find({where:{email:{value:email.value}}})).length;
     const nicknameUserCount = (await this.userRepository.find({where:{nickname:{value:nickname.value}}})).length;
 
     if(emailUserCount>0){
-      validation.addError(new ForbiddenException) 
+      errors.push( new BadRequestException );
     }
 
     if(nicknameUserCount>0){ 
-      validation.addError(new ForbiddenException) 
+      errors.push(new BadRequestException) 
     }
 
-    return validation;
+    return errors;
   }
 
-  async validatePasswordByEmail(email:UserEmail,password:UserPassword):Promise<UserPasswordValidation>{
+  async validatePasswordByEmail(email:UserEmail,password:UserPassword):Promise<HttpException[]>{
 
-    const validation = new UserPasswordValidation;
+    const errors:HttpException[]=[];
 
     const user = await this.userRepository.findOne({where:{email:{value:email.value}}});
 
     console.log(user);
 
     if(user==undefined){ 
-      validation.addError( new NotFoundException());
+      errors.push( new NotFoundException );
     }
     else{
       if(!user.comparePassword(password)){ 
-        validation.addError(new ForbiddenException); 
+        errors.push( new ForbiddenException ); 
       }
 
     }
-    return validation;
+    return errors;
 
   }
 
