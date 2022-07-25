@@ -2,7 +2,7 @@ import { Controller, Body, Post, ValidationPipe } from '@nestjs/common';
 import { UserCreator } from '../application.service/user.creator';
 import { UserCreateDto } from '../dto/user.create.dto';
 import { UserEmail } from '../domain.model/user.email';
-import { UserHashedPassword } from '../domain.model/user.hashed.password';
+import { UserPassword } from '../domain.model/user.password';
 import { UserName } from '../domain.model/user.name';
 import { UserNickname } from '../domain.model/user.nickname';
 
@@ -16,7 +16,7 @@ constructor(
   signup(@Body( new ValidationPipe() ) userCreateDto: UserCreateDto){
 
     //value objects from DTO
-    const password =  UserHashedPassword.create(userCreateDto.password);
+    const password =  UserPassword.create(userCreateDto.password);
     const name = UserName.create(userCreateDto.firstName,userCreateDto.lastName);
     const email = UserEmail.create(userCreateDto.email);
     const nickname = UserNickname.create(userCreateDto.nickname);

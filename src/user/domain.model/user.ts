@@ -63,9 +63,9 @@ export class User extends AggregateRoot {
     return this.hashedPassword.assert(password);
   }
 
-  static create(nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName):User {
+  static create(nickname:UserNickname,email:UserEmail,password:UserPassword,name:UserName):User {
 
-    const user = new User(uuid4(),nickname,email,hashedPassword,name,new Date);
+    const user = new User(uuid4(),nickname,email,password.hash(),name,new Date);
     user.apply( new UserCreatedEvent(user) );
     return user;
 

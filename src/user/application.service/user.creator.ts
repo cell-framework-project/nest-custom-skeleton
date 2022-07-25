@@ -4,9 +4,9 @@ import { UserRepository } from '../../user/domain.model/user.repository';
 import { UserEmail } from '../domain.model/user.email';
 import { UserName } from '../domain.model/user.name';
 import { UserNickname } from '../domain.model/user.nickname';
-import { UserHashedPassword } from '../domain.model/user.hashed.password';
 import { UserAvailabilityValidation } from '../domain.model/user.availability.validation';
 import { EventPublisher } from '@nestjs/cqrs';
+import { UserPassword } from '../domain.model/user.password';
 
 @Injectable()
 export class UserCreator {
@@ -16,7 +16,7 @@ export class UserCreator {
     private publisher:EventPublisher
   ) {  }
 
-  async invoque(nickname:UserNickname,email:UserEmail,password:UserHashedPassword,name:UserName):Promise<void>{
+  async invoque(nickname:UserNickname,email:UserEmail,password:UserPassword,name:UserName):Promise<void>{
 
     this.repository.checkAvailability(nickname,email).then(async(validation:UserAvailabilityValidation)=>{
 
