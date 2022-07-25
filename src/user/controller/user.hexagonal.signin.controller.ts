@@ -7,14 +7,18 @@ import { UserAuthService } from '../application.service/user.auth.service';
 
 @Controller('user-hex')
 export class UserHexagonalSigninController {
-constructor( private readonly userAuthService:UserAuthService ) {}
+constructor( 
+  private readonly userAuthService:UserAuthService 
+) {}
 
   @Post('signin')
   signin(@Body( new ValidationPipe() ) userAuthDto: UserEmailAuthenticateDto){
 
+    //
     const email:UserEmail = UserEmail.create(userAuthDto.email);
     const password:UserPassword = new UserPassword(userAuthDto.password);
 
+    //
     return this.userAuthService.invoque(email,password);
 
   }

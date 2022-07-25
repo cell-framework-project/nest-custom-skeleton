@@ -1,4 +1,5 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { UserResult } from 'src/user/application.service/user.result';
 import { UserFinder } from '../../application.service/user.finder';
 import { UserFindQuery } from './user.find.query';
 
@@ -8,7 +9,11 @@ export class UserFindQueryHandler implements IQueryHandler<UserFindQuery> {
 
   async execute(query: UserFindQuery) {
 
-    const result = await this.service.invoque(query.id);
+    const user = await this.service.invoque(query.id);
+
+    const result:UserResult[] = [];
+
+    
 
     return result;
 
