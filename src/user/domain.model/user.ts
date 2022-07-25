@@ -21,13 +21,13 @@ export class User extends AggregateRoot {
   readonly email:UserEmail;
 
   @Column( ()=> UserName,{ prefix:false } )
-  name:UserName;
+  readonly name:UserName;
+
+  @Column({ name:'creation_date_time' } )
+  readonly creationDateTime:Date;
 
   @Column( ()=> UserHashedPassword,{ prefix:false } )
   hashedPassword: UserHashedPassword;
-
-  @Column({ name:'creation_date_time' } )
-  creationDateTime:Date;
 
   constructor(id:string,nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName,creationDateTime:Date) {
     super();
@@ -37,26 +37,6 @@ export class User extends AggregateRoot {
     this.hashedPassword = hashedPassword;
     this.name = name;
     this.creationDateTime = creationDateTime;
-  }
-
-  getId():string{
-    return this.id;
-  }
-
-  getNickname():UserNickname{ 
-    return this.nickname;
-  }
-
-  getEmail():UserEmail{
-    return this.email;
-  }
-
-  getName():UserName{
-    return this.name;
-  }
-
-  getCreationDateTime():Date{
-    return this.creationDateTime;
   }
 
   comparePassword(password:UserPassword):boolean{
