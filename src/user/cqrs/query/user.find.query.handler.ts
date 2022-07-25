@@ -10,7 +10,6 @@ export class UserFindQueryHandler implements IQueryHandler<UserFindQuery> {
   async execute(query: UserFindQuery) {
 
     const result = await this.service.invoque(query.id);
-
     return result;
 
   }
