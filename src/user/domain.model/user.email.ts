@@ -3,7 +3,7 @@ import { Column } from "typeorm"
 
 export class UserEmail extends EmailValueObject{
 
-    @Column('varchar',{length:256,name:'email',unique:true})
+    @Column('varchar',{ length:256,name:'email',unique:true })
     value: string;
 
     static create(value:string):UserEmail{
