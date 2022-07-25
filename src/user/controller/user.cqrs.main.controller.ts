@@ -21,12 +21,7 @@ export class UserCQRSMainController {
 
     //new empty query and send it to bus
     const userListFindQuery = new UserListFindQuery();
-    this.queryBus.execute(userListFindQuery).then(async (users:UserResult[])=>{
-
-      //json render of result view model
-      res.status(HttpStatus.OK).json(users);
-
-    });
+    this.queryBus.execute(userListFindQuery).then(async (users:UserResult[])=>{ res.status(HttpStatus.OK).json(users); });
   }
 
   //get single user by UUID
