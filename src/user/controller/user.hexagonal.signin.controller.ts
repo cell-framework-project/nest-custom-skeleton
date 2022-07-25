@@ -14,11 +14,11 @@ constructor(
   @Post('signin')
   signin(@Body( new ValidationPipe() ) userAuthDto: UserEmailAuthenticateDto){
 
-    //
+    //value objects
     const email:UserEmail = UserEmail.create(userAuthDto.email);
     const password:UserPassword = new UserPassword(userAuthDto.password);
 
-    //
+    //auth service
     return this.userAuthService.invoque(email,password);
 
   }
