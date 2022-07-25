@@ -12,13 +12,13 @@ import { v4 as uuid4 } from 'uuid';
 export class User extends AggregateRoot {
 
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  readonly id: string;
 
   @Column( ()=> UserNickname,{ prefix:false } )
-  nickname: UserNickname;
+  readonly nickname: UserNickname;
 
   @Column( ()=> UserEmail,{ prefix:false } )
-  email:UserEmail;
+  readonly email:UserEmail;
 
   @Column( ()=> UserName,{ prefix:false } )
   name:UserName;
