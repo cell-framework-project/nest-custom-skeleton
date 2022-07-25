@@ -15,7 +15,6 @@ export class UserCreator {
     private publisher:EventPublisher
   ) {  }
 
-  
   async invoque(nickname:UserNickname,email:UserEmail,password:UserPassword,name:UserName):Promise<void>{
 
     const errors:HttpException[] = await this.repository.checkAvailability(nickname,email);
@@ -34,7 +33,5 @@ export class UserCreator {
     }
 
   }
-
-
 
 }
