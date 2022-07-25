@@ -11,7 +11,7 @@ export class UserAuthService{
   constructor( 
     @Inject('USER_REPOSITORY') protected userRepository:UserRepository,
     protected jwtService:JwtService,
-    //protected publisher:EventPublisher
+    protected publisher:EventPublisher
   ){  }
 
   async invoque(email:UserEmail,password:UserPassword):Promise<any>{
@@ -27,8 +27,10 @@ export class UserAuthService{
     //validation success then JWT token is creeated
     else{
 
+      //get user
       const user = await this.userRepository.searchByEmail(email);
 
+      //create payload
       const payload:object={
         id:user.getId(),
         nickname:user.getNickname().value,
@@ -36,8 +38,9 @@ export class UserAuthService{
         token:this.jwtService.sign({id:user.getId(),nickname:user.getNickname().value,email:user.getEmail().value},{secret:'secret'})
       }
 
-      //const userEvents = this.publisher.mergeObjectContext(user)
-      //userEvents.commit();
+      //publish domain events
+      const userEvents = this.publisher.mergeObjectContext(user)
+      userEvents.commit();
 
       return payload;
   
