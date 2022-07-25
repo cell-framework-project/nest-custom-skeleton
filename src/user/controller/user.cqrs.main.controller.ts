@@ -16,7 +16,6 @@ export class UserCQRSMainController {
     private readonly queryBus:QueryBus 
   ) {  }
 
-  @UseGuards(JwtGuard)
   @Get()
   index(@Res() res: Response){
 
