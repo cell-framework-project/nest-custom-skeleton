@@ -5,7 +5,10 @@ import { UserListFinder } from '../application.service/user.list.finder';
 
 @Controller('user-hex')
 export class UserHexagonalMainController {
-constructor( private readonly userFinder: UserFinder, private readonly userListFinder:UserListFinder ) {}
+constructor( 
+  private readonly userFinder: UserFinder, 
+  private readonly userListFinder:UserListFinder 
+) {  }
 
   @Get()
   index(@Res() res: Response){
