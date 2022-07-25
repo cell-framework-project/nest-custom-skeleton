@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { User } from 'src/user/domain.model/user';
-import { databaseConstants } from './database.constants';
+import { databaseConstants } from '../config/database.constants';
 
 export const databaseProviders = [
   {
