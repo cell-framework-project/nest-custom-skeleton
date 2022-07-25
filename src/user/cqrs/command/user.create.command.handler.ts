@@ -10,7 +10,7 @@ import { UserCreator } from "../../application.service/user.creator";
 export class UserCreateCommandHandler implements ICommandHandler<UserCreateCommand> {
   constructor(
     private service: UserCreator
-  ) {}
+  ) {  }
 
   async execute(command: UserCreateCommand){
 
@@ -20,7 +20,7 @@ export class UserCreateCommandHandler implements ICommandHandler<UserCreateComma
     const password =  UserPassword.create(command.password);
     const name = UserName.create(command.firstName,command.lastName);
 
-    //
+    //application service
     this.service.invoque(nickname,email,password,name);
 
   }
