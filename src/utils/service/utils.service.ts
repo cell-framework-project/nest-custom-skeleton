@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { v4 as uuid4 } from 'uuid';
-
+import { randomCodeGenerator } from '../../shared/utils/utils';
 
 @Injectable()
 export class UtilsService {
@@ -12,6 +12,10 @@ export class UtilsService {
   uuidGenerator():string{
     const uuid:string = uuid4();
     return uuid;
+  }
+
+  randomCodeGenerator(length:number):string{
+    return randomCodeGenerator(length);
   }
 
 }

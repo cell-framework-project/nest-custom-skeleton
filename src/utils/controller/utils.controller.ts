@@ -12,4 +12,10 @@ export class UtilsController {
     return this.utilsService.uuidGenerator();
   }
 
+  @Get('random-code/:length')
+  randomCode(@Param('length') length: number) {
+    return this.utilsService.randomCodeGenerator(length);
+  }
+
+
 }
