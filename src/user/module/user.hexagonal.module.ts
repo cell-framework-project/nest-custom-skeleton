@@ -26,8 +26,19 @@ export const QueryHandlers =[UserListFindQueryHandler,UserFindQueryHandler];
     CqrsModule,
     JwtModule.registerAsync({useFactory: () => {return {signOptions: { expiresIn: '4d' },secret: 'secret'};}})
   ],
-  controllers:[UserHexagonalMainController,UserHexagonalSignupController,UserHexagonalSigninController],
-  providers:[...userProviders,UserListFinder,UserFinder,UserCreator,UserEmailAuthenticator,UserAuthService]
+  controllers:[
+    UserHexagonalMainController,
+    UserHexagonalSignupController,
+    UserHexagonalSigninController
+  ],
+  providers:[
+    ...userProviders,
+    UserListFinder,
+    UserFinder,
+    UserCreator,
+    UserEmailAuthenticator,
+    UserAuthService
+  ]
 })
 export class UserHexagonalModule {  }
 
