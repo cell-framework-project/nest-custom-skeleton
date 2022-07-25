@@ -39,7 +39,10 @@ export const QueryHandlers =[UserListFindQueryHandler,UserFindQueryHandler];
     UserListFinder,
     UserFinder,
     UserCreator,
-    UserAuthService
+    UserAuthService,
+    ...CommandHandlers, 
+    ...EventHandlers,
+    ...QueryHandlers
   ]
 })
 export class UserHexagonalModule {  }
