@@ -1,4 +1,4 @@
-import { Controller, Res, Body, Post } from '@nestjs/common';
+import { Controller, Res, Body, Post, ValidationPipe } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { UserCreateDto } from '../../user/dto/user.create.dto';
 import { UserCreateCommand } from '../cqrs/command/user.create.command';
@@ -12,7 +12,7 @@ constructor(
   ) {  }
 
   @Post('signup')
-  signup(@Body() userCreateDto: UserCreateDto){
+  signup(@Body( new ValidationPipe() ) userCreateDto: UserCreateDto){
 
     // command created from valid DTO
     const userCreateCommand = new UserCreateCommand(
