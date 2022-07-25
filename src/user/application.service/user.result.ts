@@ -2,19 +2,23 @@ import { User } from 'src/user/domain.model/user';
 
 export class UserResult{
 
-  readonly id:string;
-  readonly nickname:string;
-  readonly email:string;
-  readonly name:object;
-  readonly creationDateTime:string;
+  readonly viewModel:object;
+
 
   constructor(user:User){
 
-    this.id=user.getId(),
-    this.nickname=user.getNickname().value,
-    this.email=user.getEmail().value,
-    this.name={ first:user.getName().first, last:user.getName().last },
-    this.creationDateTime=user.getCreationDateTime().toLocaleTimeString()
+    this.viewModel={
+      user:{
+        id:user.id,
+        nickname:user.nickname.value,
+        email:user.email.value,
+        name:{
+          first:user.name.first,
+          last:user.name.last
+        },
+        creationDateTime:user.creationDateTime
+      }
+    }
     
   }
 
