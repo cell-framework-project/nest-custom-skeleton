@@ -16,17 +16,22 @@ import { UserListFindQueryHandler } from '../cqrs/query/user.list.find.query.han
 import { UserFindQueryHandler } from '../cqrs/query/user.find.query.handler';
 import { UserCQRSMainController } from '../controller/user.cqrs.main.controller';
 import { UserCQRSSignupController } from '../controller/user.cqrs.signup.controller';
+import { UserLoggedEventEventHandler } from '../cqrs/event/user.logged.event.handler';
 
-export const CommandHandlers = [UserCreateCommandHandler];
-export const EventHandlers = [UserCreatedEventEventHandler];
-export const QueryHandlers =[UserListFindQueryHandler,UserFindQueryHandler];
+export const CommandHandlers = [ UserCreateCommandHandler ];
+
+export const EventHandlers = [ UserCreatedEventEventHandler,UserLoggedEventEventHandler ];
+
+export const QueryHandlers =[ UserListFindQueryHandler,UserFindQueryHandler ];
 
 @Module({
+
   imports:[
     DatabaseModule,
     CqrsModule,
     JwtModule.registerAsync({useFactory: () => {return {signOptions: { expiresIn: '4d' },secret: 'secret'};}})
   ],
+
   controllers:[
     UserHexagonalMainController,
     UserHexagonalSignupController,
@@ -34,6 +39,7 @@ export const QueryHandlers =[UserListFindQueryHandler,UserFindQueryHandler];
     UserCQRSSignupController,
     UserCQRSMainController
   ],
+
   providers:[
     ...userProviders,
     UserListFinder,
@@ -44,6 +50,7 @@ export const QueryHandlers =[UserListFindQueryHandler,UserFindQueryHandler];
     ...EventHandlers,
     ...QueryHandlers
   ]
+
 })
 export class UserModule {  }
 

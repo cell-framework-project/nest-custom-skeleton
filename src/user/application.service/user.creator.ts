@@ -11,7 +11,10 @@ import { EventPublisher } from '@nestjs/cqrs';
 @Injectable()
 export class UserCreator {
   
-  constructor(@Inject('USER_REPOSITORY') private repository: UserRepository, private publisher:EventPublisher) {  }
+  constructor(
+    @Inject('USER_REPOSITORY') private repository: UserRepository, 
+    private publisher:EventPublisher
+  ) {  }
 
   async invoque(nickname:UserNickname,email:UserEmail,password:UserHashedPassword,name:UserName):Promise<void>{
 

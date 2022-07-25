@@ -38,13 +38,19 @@ export class UserRepository {
 
     const validation = new UserPasswordValidation;
 
-    const user = this.userRepository.findOne({where:{email:{value:email.value}}});
+    const user = await this.userRepository.findOne({where:{email:{value:email.value}}});
 
-    if(user==null){ validation.addError( new NotFoundException()) }
-    else{
-      if(!(await user).comparePassword(password)){ validation.addError(new ForbiddenException); }
+    console.log(user);
+
+    if(user==undefined){ 
+      validation.addError( new NotFoundException());
     }
+    else{
+      if(!user.comparePassword(password)){ 
+        validation.addError(new ForbiddenException); 
+      }
 
+    }
     return validation;
 
   }
