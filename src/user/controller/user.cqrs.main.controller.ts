@@ -1,9 +1,11 @@
-import { Controller,  Get, Res, HttpStatus,Param } from '@nestjs/common';
+import { Controller,  Get, Res, HttpStatus,Param, UseGuards } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Response } from 'express';
 import { UserResult } from '../application.service/user.result';
 import { UserFindQuery } from '../cqrs/query/user.find.query';
 import { UserListFindQuery } from '../cqrs/query/user.list.find.query';
+import { JwtGuard } from '../middleware/jwt.guard';
+
 
 @Controller('user-cqrs')
 export class UserCQRSMainController {
@@ -14,7 +16,7 @@ export class UserCQRSMainController {
     private readonly queryBus:QueryBus 
   ) {  }
 
-  //get all of users without parameters
+  @UseGuards(JwtGuard)
   @Get()
   index(@Res() res: Response){
 
