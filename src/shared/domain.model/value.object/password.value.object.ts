@@ -1,3 +1,6 @@
+import * as bcrypt from 'bcrypt';
+import { HashedPasswordValueObject } from "./hashed.password.value.object";
+
 export class PasswordValueObject{
 
   readonly value: string;
@@ -8,6 +11,10 @@ export class PasswordValueObject{
 
   static create(value:string):PasswordValueObject{
     return new PasswordValueObject(value);
+  }
+
+  hash():HashedPasswordValueObject{
+    return new HashedPasswordValueObject(bcrypt.hashSync(this.value,10));
   }
 
 }
