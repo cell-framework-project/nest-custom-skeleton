@@ -1,4 +1,3 @@
-
 export class StringValueObject{
 
   value: string;
