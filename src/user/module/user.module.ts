@@ -17,6 +17,7 @@ import { UserFindQueryHandler } from '../cqrs/query/user.find.query.handler';
 import { UserCQRSMainController } from '../controller/user.cqrs.main.controller';
 import { UserCQRSSignupController } from '../controller/user.cqrs.signup.controller';
 import { UserLoggedEventEventHandler } from '../cqrs/event/user.logged.event.handler';
+import { JwtStrategy } from '../middleware/jwt.strategy';
 
 export const CommandHandlers = [ UserCreateCommandHandler ];
 
@@ -46,6 +47,7 @@ export const QueryHandlers =[ UserListFindQueryHandler,UserFindQueryHandler ];
     UserFinder,
     UserCreator,
     UserAuthService,
+    JwtStrategy,
     ...CommandHandlers, 
     ...EventHandlers,
     ...QueryHandlers
