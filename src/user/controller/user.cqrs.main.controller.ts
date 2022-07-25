@@ -6,7 +6,6 @@ import { UserFindQuery } from '../cqrs/query/user.find.query';
 import { UserListFindQuery } from '../cqrs/query/user.list.find.query';
 import { JwtGuard } from '../middleware/jwt.guard';
 
-
 @Controller('user-cqrs')
 export class UserCQRSMainController {
 
