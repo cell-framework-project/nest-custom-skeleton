@@ -5,7 +5,6 @@ import { DatabaseModule } from 'src/database/database.module';
 import { UserHexagonalSignupController } from '../controller/user.hexagonal.signup.controller';
 import { UserListFinder } from '../application.service/user.list.finder';
 import { UserCreator } from '../application.service/user.creator';
-import { UserEmailAuthenticator } from '../application.service/user.email.authenticator';
 import { UserHexagonalSigninController } from '../controller/user.hexagonal.signin.controller';
 import { UserFinder } from '../application.service/user.finder';
 import { CqrsModule } from '@nestjs/cqrs';
@@ -15,6 +14,8 @@ import { UserCreateCommandHandler } from '../cqrs/command/user.create.command.ha
 import { UserCreatedEventEventHandler } from '../cqrs/event/user.created.event.handler';
 import { UserListFindQueryHandler } from '../cqrs/query/user.list.find.query.handler';
 import { UserFindQueryHandler } from '../cqrs/query/user.find.query.handler';
+import { UserCQRSMainController } from '../controller/user.cqrs.main.controller';
+import { UserCQRSSignupController } from '../controller/user.cqrs.signup.controller';
 
 export const CommandHandlers = [UserCreateCommandHandler];
 export const EventHandlers = [UserCreatedEventEventHandler];
@@ -29,14 +30,15 @@ export const QueryHandlers =[UserListFindQueryHandler,UserFindQueryHandler];
   controllers:[
     UserHexagonalMainController,
     UserHexagonalSignupController,
-    UserHexagonalSigninController
+    UserHexagonalSigninController,
+    UserCQRSSignupController,
+    UserCQRSMainController
   ],
   providers:[
     ...userProviders,
     UserListFinder,
     UserFinder,
     UserCreator,
-    UserEmailAuthenticator,
     UserAuthService
   ]
 })
