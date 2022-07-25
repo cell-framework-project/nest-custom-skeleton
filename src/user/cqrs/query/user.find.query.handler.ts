@@ -1,5 +1,4 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { UserResult } from 'src/user/application.service/user.result';
 import { UserFinder } from '../../application.service/user.finder';
 import { UserFindQuery } from './user.find.query';
 
