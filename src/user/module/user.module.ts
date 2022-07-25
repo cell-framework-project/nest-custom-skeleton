@@ -45,5 +45,5 @@ export const QueryHandlers =[UserListFindQueryHandler,UserFindQueryHandler];
     ...QueryHandlers
   ]
 })
-export class UserHexagonalModule {  }
+export class UserModule {  }
 
