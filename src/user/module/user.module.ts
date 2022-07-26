@@ -4,8 +4,9 @@ import { jwtConstants } from 'src/config/jwt.constants';
 //Modules
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { DatabaseModule } from 'src/database/database.module';
 import { CqrsModule } from '@nestjs/cqrs';
+import { DatabaseModule } from 'src/database/database.module';
+
 
 //Providers
 import { userProviders } from './user.providers';
@@ -17,14 +18,14 @@ import { UserAuthService } from 'src/user/application.service/user.auth.service'
 import { UserCreator } from 'src/user/application.service/user.creator';
 
 //CQRS Handlers
-import { UserCreateCommandHandler } from '../cqrs/command/user.create.command.handler';
-import { UserCreatedEventEventHandler } from '../cqrs/event/user.created.event.handler';
-import { UserListFindQueryHandler } from '../cqrs/query/user.list.find.query.handler';
-import { UserFindQueryHandler } from '../cqrs/query/user.find.query.handler';
-import { UserLoggedEventEventHandler } from '../cqrs/event/user.logged.event.handler';
+import { UserCreateCommandHandler } from 'src/user/cqrs/command/user.create.command.handler';
+import { UserCreatedEventEventHandler } from 'src/user/cqrs/event/user.created.event.handler';
+import { UserListFindQueryHandler } from 'src/user/cqrs/query/user.list.find.query.handler';
+import { UserFindQueryHandler } from 'src/user/cqrs/query/user.find.query.handler';
+import { UserLoggedEventEventHandler } from 'src/user/cqrs/event/user.logged.event.handler';
 
 //Middlewares Passport
-import { JwtStrategy } from '../middleware/jwt.strategy';
+import { JwtStrategy } from 'src/user/middleware/jwt.strategy';
 
 //Controller
 import { UserSignupController } from '../controller/user.signup.controller';
