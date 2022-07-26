@@ -7,7 +7,9 @@ export class UserListResult{
   constructor(users:User[]){
 
     const viewModel=[];
+
     users.forEach((user:User)=>{
+
       const userViewModel={
         id:user.id,
         nickname:user.nickname.value,
@@ -18,7 +20,9 @@ export class UserListResult{
         },
         creationDateTime:user.creationDateTime
       };
+
     viewModel.push(userViewModel);
+    
     });
     
     this.viewModel=viewModel;
