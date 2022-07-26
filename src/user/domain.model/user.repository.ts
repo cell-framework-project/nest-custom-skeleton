@@ -5,7 +5,6 @@ import { User } from './user';
 import { UserNickname } from './user.nickname';
 import { UserPassword } from './user.password';
 
-
 @Injectable()
 export class UserRepository {
   
