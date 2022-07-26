@@ -1,4 +1,4 @@
-import { Controller,  Get, Res, HttpStatus,Param, UseGuards } from '@nestjs/common';
+import { Controller,  Get, Res, HttpStatus, Request, UseGuards } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Response } from 'express';
 import { UserResult } from '../application.service/user.result';
@@ -15,27 +15,26 @@ export class UserCQRSMainController {
     private readonly queryBus:QueryBus 
   ) {  }
 
+  @UseGuards(JwtGuard)
   @Get()
   index(@Res() res: Response){
 
-    //new empty query and send it to bus
     const userListFindQuery = new UserListFindQuery();
-    this.queryBus.execute(userListFindQuery).then(async (users:UserResult[])=>{ res.status(HttpStatus.OK).json(users); });
-  }
+    this.queryBus.execute(userListFindQuery).then(async (users:UserResult[])=>{
 
-  //get single user by UUID
-  @Get(':id')
-  get(@Param() params, @Res() res: Response){
-
-    //new query and send it to bus
-    const userFindQuery = new UserFindQuery(params.id);
-    this.queryBus.execute(userFindQuery).then(async (user:UserResult)=>{
-
-      //json render of result view model
-      res.status(HttpStatus.OK).json(user.viewModel);
+      res.status(HttpStatus.OK).json(users); 
 
     });
+    
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('main')
+  get(@Request() req,@Res() res: Response){
+    
+    res.status(HttpStatus.OK).json(req.user.viewModel);
 
   }
+
 
 }
