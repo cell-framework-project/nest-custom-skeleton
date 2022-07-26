@@ -27,7 +27,7 @@ constructor(
   @Get('main')
   get(@Request() req,@Res() res: Response){
     
-    res.status(HttpStatus.OK).json(req.user);
+    res.status(HttpStatus.OK).json(req.user.viewMOdel);
 
   }
 

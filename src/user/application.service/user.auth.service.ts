@@ -32,10 +32,14 @@ export class UserAuthService{
 
       //create payload
       const payload:object={
-        id:user.getId(),
-        nickname:user.getNickname().value,
-        email:user.getEmail().value,
-        token:this.jwtService.sign({id:user.getId(),nickname:user.getNickname().value,email:user.getEmail().value},{secret:'secret'})
+        id:user.id,
+        nickname:user.nickname.value,
+        email:user.email.value,
+        token:this.jwtService.sign({
+          id:user.id,
+          nickname:user.nickname.value,
+          email:user.email.value
+        },{secret:'secret'})
       }
 
       //publish domain events

@@ -15,14 +15,14 @@ export class UserLoggedEvent{
     this.data={
 
       user:{
-        id:user.getId(),
-        nickname:user.getNickname().value,
-        email:user.getEmail().value,
+        id:user.id,
+        nickname:user.nickname.value,
+        email:user.email.value,
         name:{
-          first:user.getName().first,
-          last:user.getName().last
+          first:user.name.first,
+          last:user.name.last
         },
-        creationDateTime:user.getCreationDateTime()
+        creationDateTime:user.creationDateTime
       },
 
       success:success
