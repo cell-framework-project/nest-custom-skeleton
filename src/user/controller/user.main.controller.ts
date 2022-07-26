@@ -24,7 +24,7 @@ export class UserMainController {
     //executes query a gets result
     this.queryBus.execute(userListFindQuery).then(async (users:UserListResult)=>{
 
-      res.status(HttpStatus.OK).json(users); 
+      res.status(HttpStatus.OK).json(users.viewModel); 
 
     });
     
