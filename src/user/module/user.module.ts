@@ -36,7 +36,6 @@ export const CommandHandlers = [ UserCreateCommandHandler ];
 export const EventHandlers = [ UserCreatedEventEventHandler,UserLoggedEventEventHandler ];
 export const QueryHandlers =[ UserListFindQueryHandler,UserFindQueryHandler ];
 
-
 //Module Assembly
 @Module({
 
