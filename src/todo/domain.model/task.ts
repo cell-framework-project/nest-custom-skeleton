@@ -10,6 +10,7 @@ export class Task {
   @Column( ()=> TaskTitle,{ prefix:false } )
   readonly title:TaskTitle;
 
+  @Column({ name:'creation_date_time' } )
   readonly creationDateTime:Date;
 
 }

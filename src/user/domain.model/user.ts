@@ -5,7 +5,7 @@ import { UserNickname } from './user.nickname';
 import { UserHashedPassword } from './user.hashed.password';
 import { UserPassword } from './user.password';
 import { AggregateRoot } from '@nestjs/cqrs';
-import { UserCreatedEvent } from '../cqrs/event/user.created.event';
+import { UserCreatedEvent } from 'src/user/cqrs/event/user.created.event';
 import { v4 as uuid4 } from 'uuid';
 
 @Entity({name:'user'})
