@@ -7,20 +7,16 @@ export class UserResult{
   constructor(user:User){
 
     this.viewModel={
-
-      user:{
-        id:user.id,
-        nickname:user.nickname.value,
-        email:user.email.value,
-        name:{
-          first:user.name.first,
-          last:user.name.last
-        },
-        creationDateTime:user.creationDateTime
-      }
-
+      id:user.id,
+      nickname:user.nickname.value,
+      email:user.email.value,
+      name:{
+        first:user.name.first,
+        last:user.name.last
+      },
+      creationDateTime:user.creationDateTime
     }
-    
+
   }
 
 }
