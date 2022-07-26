@@ -40,7 +40,7 @@ export class UserAuthService{
           nickname:user.nickname.value,
           email:user.email.value
         },{secret:'secret'})
-      }
+      };
 
       //publish domain events
       const userEvents = this.publisher.mergeObjectContext(user)
