@@ -17,7 +17,9 @@ constructor(
   index(@Res() res: Response){
 
     this.userListFinder.invoque().then(async (users:UserListResult)=>{
+
       res.status(HttpStatus.OK).json(users.viewModel);
+      
     });
 
   }
