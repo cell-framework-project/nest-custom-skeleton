@@ -1,4 +1,5 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { UserListResult } from 'src/user/application.service/user.list.result';
 import { UserListFinder } from '../../application.service/user.list.finder';
 import { UserListFindQuery } from './user.list.find.query';
 
@@ -10,7 +11,7 @@ export class UserListFindQueryHandler implements IQueryHandler<UserListFindQuery
 
     const users = await this.service.invoque();
 
-    return users;
+    return new UserListResult(users);
 
   }
 }
