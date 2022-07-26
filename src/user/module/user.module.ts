@@ -1,3 +1,6 @@
+//Env
+import { jwtConstants } from 'src/config/jwt.constants';
+
 //Modules
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
