@@ -1,13 +1,12 @@
 import { Controller,  Get, Res, HttpStatus, Request, UseGuards } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Response } from 'express';
-import { UserResult } from '../application.service/user.result';
-import { UserFindQuery } from '../cqrs/query/user.find.query';
+import { UserListResult } from '../application.service/user.list.result';
 import { UserListFindQuery } from '../cqrs/query/user.list.find.query';
 import { JwtGuard } from '../middleware/jwt.guard';
 
 @Controller('user-cqrs')
-export class UserCQRSMainController {
+export class UserMainController {
 
   //command bus and query bus injected
   constructor(
@@ -19,8 +18,11 @@ export class UserCQRSMainController {
   @Get()
   index(@Res() res: Response){
 
+    //empty query
     const userListFindQuery = new UserListFindQuery();
-    this.queryBus.execute(userListFindQuery).then(async (users:UserResult[])=>{
+
+    //executes query a gets result
+    this.queryBus.execute(userListFindQuery).then(async (users:UserListResult)=>{
 
       res.status(HttpStatus.OK).json(users); 
 

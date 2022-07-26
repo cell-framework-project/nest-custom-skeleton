@@ -1,10 +1,10 @@
 import { Controller, Res, Body, Post, ValidationPipe } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { UserCreateDto } from '../../user/dto/user.create.dto';
+import { UserCreateDto } from '../dto/user.create.dto';
 import { UserCreateCommand } from '../cqrs/command/user.create.command';
 
-@Controller('user-cqrs')
-export class UserCQRSSignupController {
+@Controller('user')
+export class UserSignupController {
 
 constructor(
     private readonly commandBus: CommandBus,

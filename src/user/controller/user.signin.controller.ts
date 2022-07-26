@@ -5,8 +5,8 @@ import { UserPassword } from '../domain.model/user.password';
 import { UserAuthService } from '../application.service/user.auth.service';
 
 
-@Controller('user-hex')
-export class UserHexagonalSigninController {
+@Controller('user')
+export class UserSigninController {
 constructor( 
   private readonly userAuthService:UserAuthService 
 ) {}
