@@ -7,9 +7,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { CqrsModule } from '@nestjs/cqrs';
 import { DatabaseModule } from 'src/database/database.module';
 
-
 //Providers
-import { userProviders } from './user.providers';
+import { userProviders } from 'src/user/module/user.providers';
 
 //Services
 import { UserListFinder } from 'src/user/application.service/user.list.finder';
