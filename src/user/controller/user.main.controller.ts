@@ -5,7 +5,7 @@ import { UserListResult } from '../application.service/user.list.result';
 import { UserListFindQuery } from '../cqrs/query/user.list.find.query';
 import { JwtGuard } from '../middleware/jwt.guard';
 
-@Controller('user-cqrs')
+@Controller('user')
 export class UserMainController {
 
   //command bus and query bus injected
