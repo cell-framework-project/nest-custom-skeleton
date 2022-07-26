@@ -9,9 +9,7 @@ export class UserListFindQueryHandler implements IQueryHandler<UserListFindQuery
 
   async execute(query: UserListFindQuery) {
 
-    const users = await this.service.invoque();
-
-    return new UserListResult(users);
+    return this.service.invoque();
 
   }
 }
