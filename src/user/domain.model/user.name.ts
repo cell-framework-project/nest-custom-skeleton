@@ -4,10 +4,10 @@ import { Column } from "typeorm"
 export class UserName extends PersonalNameValueObject{
 
     @Column('varchar',{ length:256, name:'first_name' })
-    first: string;
+    readonly first: string;
 
     @Column('varchar',{ length:256, name:'last_name' })
-    last: string;
+    readonly last: string;
 
     static create(first:string,last:string):UserName{
         return new UserName(first,last);

@@ -4,7 +4,7 @@ import { Column } from "typeorm"
 export class UserNickname extends StringValueObject{
 
     @Column('varchar',{ length:256,name:'nickname',unique:true })
-    value: string;
+    readonly value: string;
 
     static create(value:string):UserNickname{
         return new UserNickname(value);
