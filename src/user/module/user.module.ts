@@ -43,7 +43,7 @@ export const QueryHandlers =[ UserListFindQueryHandler,UserFindQueryHandler ];
   imports:[
     DatabaseModule,
     CqrsModule,
-    JwtModule.registerAsync({useFactory: () => {return { signOptions: { expiresIn: jwtConstants.secretKey },secret: jwtConstants.secretKey };}})
+    JwtModule.registerAsync({useFactory: () => {return { signOptions: { expiresIn: jwtConstants.expiresIn },secret: jwtConstants.secretKey };}})
   ],
 
   controllers:[
