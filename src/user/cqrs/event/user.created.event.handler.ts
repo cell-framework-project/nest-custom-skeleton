@@ -7,4 +7,5 @@ export class UserCreatedEventEventHandler implements IEventHandler<UserCreatedEv
   handle(event: UserCreatedEvent) {
     console.log(event);
   }
+  
 }
