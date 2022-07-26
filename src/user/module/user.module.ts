@@ -11,10 +11,10 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { userProviders } from './user.providers';
 
 //Services
-import { UserListFinder } from '../application.service/user.list.finder';
-import { UserFinder } from '../application.service/user.finder';
-import { UserAuthService } from '../application.service/user.auth.service';
-import { UserCreator } from '../application.service/user.creator';
+import { UserListFinder } from 'src/user/application.service/user.list.finder';
+import { UserFinder } from 'src/user/application.service/user.finder';
+import { UserAuthService } from 'src/user/application.service/user.auth.service';
+import { UserCreator } from 'src/user/application.service/user.creator';
 
 //CQRS Handlers
 import { UserCreateCommandHandler } from '../cqrs/command/user.create.command.handler';
@@ -23,7 +23,7 @@ import { UserListFindQueryHandler } from '../cqrs/query/user.list.find.query.han
 import { UserFindQueryHandler } from '../cqrs/query/user.find.query.handler';
 import { UserLoggedEventEventHandler } from '../cqrs/event/user.logged.event.handler';
 
-//Handlers
+//Middlewares Passport
 import { JwtStrategy } from '../middleware/jwt.strategy';
 
 //Controller
@@ -43,7 +43,7 @@ export const QueryHandlers =[ UserListFindQueryHandler,UserFindQueryHandler ];
   imports:[
     DatabaseModule,
     CqrsModule,
-    JwtModule.registerAsync({useFactory: () => {return {signOptions: { expiresIn: '4d' },secret: 'secret'};}})
+    JwtModule.registerAsync({useFactory: () => {return { signOptions: { expiresIn: jwtConstants.secretKey },secret: jwtConstants.secretKey };}})
   ],
 
   controllers:[
