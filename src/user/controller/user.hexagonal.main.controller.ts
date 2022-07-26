@@ -2,6 +2,7 @@ import { Controller,  Get, Res, HttpStatus,Param, UseGuards, Request } from '@ne
 import { Response } from 'express';
 import { UserFinder } from '../application.service/user.finder';
 import { UserListFinder } from '../application.service/user.list.finder';
+import { UserListResult } from '../application.service/user.list.result';
 import { JwtGuard } from '../middleware/jwt.guard';
 
 @Controller('user-hex')
@@ -15,10 +16,8 @@ constructor(
   @Get()
   index(@Res() res: Response){
 
-    this.userListFinder.invoque().then(async (users) => {
-
-      res.status(HttpStatus.OK).json(users);
-
+    this.userListFinder.invoque().then(async (users:UserListResult)=>{
+      res.status(HttpStatus.OK).json(users.viewModel);
     });
 
   }
@@ -27,7 +26,7 @@ constructor(
   @Get('main')
   get(@Request() req,@Res() res: Response){
     
-    res.status(HttpStatus.OK).json(req.user.viewMOdel);
+    res.status(HttpStatus.OK).json(req.user.viewModel);
 
   }
 

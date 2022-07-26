@@ -2,7 +2,7 @@ import { User } from 'src/user/domain.model/user';
 
 export class UserListResult{
 
-  readonly viewModel:object[];
+  public readonly viewModel:object[];
 
   constructor(users:User[]){
 

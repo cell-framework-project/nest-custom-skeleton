@@ -1,7 +1,7 @@
 import { Injectable, Inject, Get } from '@nestjs/common';
 import { User } from '../domain.model/user';
 import { UserRepository } from '../../user/domain.model/user.repository';
-import { UserResult } from './user.result';
+import { UserListResult } from './user.list.result';
 
 @Injectable()
 export class UserListFinder {
@@ -10,19 +10,13 @@ export class UserListFinder {
     @Inject('USER_REPOSITORY') private repository: UserRepository 
   ) {  }
 
-  async invoque(): Promise<UserResult[]> {
+  async invoque(): Promise<UserListResult> {
     
     //user entity
     const users:User[] = await this.repository.list();
 
     //user view model
-    const usersResult:UserResult[]=[];
-
-    users.forEach( (user:User) =>{
-      usersResult.push( new UserResult(user) );
-    });
-
-    return usersResult;
+    return new UserListResult(users);
 
   }
 
