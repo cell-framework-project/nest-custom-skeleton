@@ -14,13 +14,13 @@ export class User extends AggregateRoot {
   @PrimaryGeneratedColumn('uuid')
   readonly id: string;
 
-  @Column( ()=> UserNickname,{ prefix:false } )
+  @Column( ()=> UserNickname, { prefix:false } )
   readonly nickname: UserNickname;
 
-  @Column( ()=> UserEmail,{ prefix:false } )
+  @Column( ()=> UserEmail, { prefix:false } )
   readonly email:UserEmail;
 
-  @Column( ()=> UserName,{ prefix:false } )
+  @Column( ()=> UserName, { prefix:false } )
   readonly name:UserName;
 
   @Column({ name:'creation_date_time' } )
