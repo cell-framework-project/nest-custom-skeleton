@@ -32,7 +32,7 @@ export class UserCQRSMainController {
     this.queryBus.execute(userFindQuery).then(async (user:UserResult)=>{
 
       //json render of result view model
-      res.status(HttpStatus.OK).json(user);
+      res.status(HttpStatus.OK).json(user.viewModel);
 
     });
 

@@ -4,10 +4,10 @@ export class UserResult{
 
   readonly viewModel:object;
 
-
   constructor(user:User){
 
     this.viewModel={
+
       user:{
         id:user.id,
         nickname:user.nickname.value,
@@ -18,6 +18,7 @@ export class UserResult{
         },
         creationDateTime:user.creationDateTime
       }
+
     }
     
   }
