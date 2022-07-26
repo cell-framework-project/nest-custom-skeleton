@@ -22,7 +22,7 @@ export class UserListResult{
       };
 
     viewModel.push(userViewModel);
-    
+
     });
     
     this.viewModel=viewModel;

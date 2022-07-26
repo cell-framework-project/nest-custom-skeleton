@@ -33,8 +33,12 @@ export class UserMainController {
   @UseGuards(JwtGuard)
   @Get('main')
   get(@Request() req,@Res() res: Response){
+
+    const vm:object = {
+      user:req.user.viewModel 
+    };
     
-    res.status(HttpStatus.OK).json(req.user.viewModel);
+    res.status(HttpStatus.OK).json(vm);
 
   }
 
