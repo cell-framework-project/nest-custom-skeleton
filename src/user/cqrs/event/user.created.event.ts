@@ -1,5 +1,5 @@
 import { User } from "../../domain.model/user";
-import {v4 as uuid4} from 'uuid';
+import { uuid4 } from "src/shared/utils/utils";
 
 export class UserCreatedEvent{
 

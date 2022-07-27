@@ -6,9 +6,9 @@ import { UserHashedPassword } from './user.hashed.password';
 import { UserPassword } from './user.password';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { UserCreatedEvent } from 'src/user/cqrs/event/user.created.event';
-import { v4 as uuid4 } from 'uuid';
 import { UserLoginSucceedEvent } from '../cqrs/event/user.login.succeed.event';
 import { UserLoginFailedEvent } from '../cqrs/event/user.login.failed.event';
+import { uuid4 } from 'src/shared/utils/utils';
 
 @Entity({name:'user'})
 export class User extends AggregateRoot {
