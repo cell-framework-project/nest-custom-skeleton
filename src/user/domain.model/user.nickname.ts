@@ -1,4 +1,4 @@
-import { StringValueObject } from "src/shared/domain.model/value.object/stringvalueobject";
+import { StringValueObject } from "src/shared/domain.model/value.object/string.value.object";
 import { Column } from "typeorm"
 
 export class UserNickname extends StringValueObject{
