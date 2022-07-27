@@ -7,4 +7,5 @@ export class UserLoginFailedConsoleEventHandler implements IEventHandler<UserLog
   handle(event: UserLoginSucceedEvent) {
     console.log(event);
   }
+  
 }
