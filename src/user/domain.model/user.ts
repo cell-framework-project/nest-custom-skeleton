@@ -29,6 +29,7 @@ export class User extends AggregateRoot {
   @Column( ()=> UserHashedPassword,{ prefix:false } )
   hashedPassword: UserHashedPassword;
 
+  //main constructor
   constructor(id:string,nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName,creationDateTime:Date) {
     super();
     this.id = id;
@@ -47,12 +48,16 @@ export class User extends AggregateRoot {
     //event from validation
     this.apply(this,val);
     return val;
-    
+
   }
 
+  //named contructor
   static create(nickname:UserNickname,email:UserEmail,password:UserPassword,name:UserName):User {
 
+    //creates user
     const user = new User(uuid4(),nickname,email,password.hash(),name,new Date);
+
+    //event from creation
     user.apply( new UserCreatedEvent(user) );
     return user;
 
