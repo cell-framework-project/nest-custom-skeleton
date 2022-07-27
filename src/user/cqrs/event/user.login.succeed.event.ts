@@ -4,7 +4,7 @@ import {v4 as uuid4} from 'uuid';
 export class UserLoginSucceedEvent{
 
   public readonly id:string;
-  public readonly key:string='user.login.failed'
+  public readonly key:string='user.login.succeed';
   public readonly data:object;
   public readonly dateTime:Date;
 
