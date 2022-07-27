@@ -4,7 +4,6 @@ import { Inject, Injectable } from '@nestjs/common';
 import { User } from '../domain.model/user';
 import { UserRepository } from '../domain.model/user.repository';
 import { UserResult } from '../application.service/user.result';
-
 import { jwtConstants } from 'src/config/jwt.constants';
 
 @Injectable()
