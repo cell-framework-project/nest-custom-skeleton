@@ -4,6 +4,7 @@ import { JwtService } from "@nestjs/jwt";
 import { UserEmail } from "../domain.model/user.email";
 import { UserPassword } from "../domain.model/user.password";
 import { UserRepository } from "../domain.model/user.repository";
+import { jwtConstants } from "src/config/jwt.constants";
 
 
 export class UserAuthService{
@@ -39,7 +40,7 @@ export class UserAuthService{
           id:user.id,
           nickname:user.nickname.value,
           email:user.email.value
-        },{secret:'secret'})
+        },{secret:jwtConstants.secretKey})
       };
 
       //publish domain events
