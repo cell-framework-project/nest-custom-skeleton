@@ -1,14 +1,14 @@
 import { User } from "../../domain.model/user";
 import {v4 as uuid4} from 'uuid';
 
-export class UserLoggedEvent{
+export class UserLoginFailedEvent{
 
   public readonly id:string;
-  public readonly key:string='user.logged'
+  public readonly key:string='user.login.failed'
   public readonly data:object;
   public readonly dateTime:Date;
 
-  constructor(user:User,success:boolean){
+  constructor(user:User){
 
     this.id=uuid4();
 
@@ -24,8 +24,6 @@ export class UserLoggedEvent{
         },
         creationDateTime:user.creationDateTime
       },
-
-      success:success
 
     }
     
