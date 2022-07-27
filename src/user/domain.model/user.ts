@@ -40,9 +40,14 @@ export class User extends AggregateRoot {
   }
 
   comparePassword(password:UserPassword):boolean{
+
+    //password validation
     const val = this.hashedPassword.assert(password);
+
+    //event from validation
     this.apply(this,val);
     return val;
+    
   }
 
   static create(nickname:UserNickname,email:UserEmail,password:UserPassword,name:UserName):User {
