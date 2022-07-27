@@ -1,6 +1,5 @@
 import { v4 } from "uuid";
 
-//random code generator
 export function randomCodeGenerator(length:number):string{
 
   let code:string = '';
@@ -15,5 +14,13 @@ export function randomCodeGenerator(length:number):string{
 export function uuid4(){
 
   return v4();
+
+}
+
+
+export function fixedLengthIntegerString(int:number,length:number){
+
+  const stringInt = int.toString();
+  const repeat = length - stringInt.length;
 
 }
