@@ -1,7 +1,7 @@
 import { User } from "../../domain.model/user";
 import {v4 as uuid4} from 'uuid';
 
-export class UserLoginSuccedEvent{
+export class UserLoginSucceedEvent{
 
   public readonly id:string;
   public readonly key:string='user.login.failed'
