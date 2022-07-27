@@ -5,6 +5,8 @@ import { User } from '../domain.model/user';
 import { UserRepository } from '../domain.model/user.repository';
 import { UserResult } from '../application.service/user.result';
 
+import { jwtConstants } from 'src/config/jwt.constants';
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor( 
@@ -13,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: 'secret',
+      secretOrKey: jwtConstants.secretKey,
     });
   }
 
