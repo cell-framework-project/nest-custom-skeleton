@@ -1,8 +1,8 @@
 import { Controller,  Get, Res, HttpStatus, Request, UseGuards } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Response } from 'express';
-import { UserListResult } from '../application.service/user.list.result';
-import { UserListFindQuery } from '../cqrs/query/user.list.find.query';
+import { UserListResult } from '../../application.service/user.list.result';
+import { UserListFindQuery } from '../../cqrs/query/user.list.find.query';
 import { JwtGuard } from '../middleware/jwt.guard';
 
 @Controller('user')

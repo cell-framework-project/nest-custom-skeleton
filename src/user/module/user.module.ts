@@ -24,12 +24,12 @@ import { UserFindQueryHandler } from 'src/user/cqrs/query/user.find.query.handle
 import { UserLoggedEventEventHandler } from 'src/user/cqrs/event/user.logged.event.handler';
 
 //Middlewares Passport
-import { JwtStrategy } from 'src/user/middleware/jwt.strategy';
+import { JwtStrategy } from 'src/user/user.interface/middleware/jwt.strategy';
 
 //Controller
-import { UserSignupController } from '../controller/user.signup.controller';
-import { UserSigninController } from '../controller/user.signin.controller';
-import { UserMainController } from '../controller/user.main.controller';
+import { UserSignupController } from 'src/user/user.interface/controller/user.signup.controller';
+import { UserSigninController } from 'src/user/user.interface/controller/user.signin.controller';
+import { UserMainController } from 'src/user/user.interface/controller/user.main.controller';
 
 //Handlers
 export const CommandHandlers = [ UserCreateCommandHandler ];
