@@ -11,7 +11,7 @@
 
 ## ENVIROMENT GLOBALS
 
-Create a .env file in the root file, and add parameters:
+Create a .env file in the project directory, and add parameters:
 
 ### APP
 ```
