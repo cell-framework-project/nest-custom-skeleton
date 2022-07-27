@@ -7,6 +7,8 @@ import { UserPassword } from './user.password';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { UserCreatedEvent } from 'src/user/cqrs/event/user.created.event';
 import { v4 as uuid4 } from 'uuid';
+import { UserLoginSucceedEvent } from '../cqrs/event/user.login.succeed.event';
+import { UserLoginFailedEvent } from '../cqrs/event/user.login.failed.event';
 
 @Entity({name:'user'})
 export class User extends AggregateRoot {
@@ -42,12 +44,16 @@ export class User extends AggregateRoot {
 
   comparePassword(password:UserPassword):boolean{
 
-    //password validation
-    const val = this.hashedPassword.assert(password);
+    const assert:boolean = this.hashedPassword.assert(password);
 
-    //event from validation
-    this.apply(this,val);
-    return val;
+    if(assert){
+      this.apply( new UserLoginSucceedEvent(this) );
+    }
+    else{
+      this.apply( new UserLoginFailedEvent(this) );
+    }
+
+    return assert;
 
   }
 
