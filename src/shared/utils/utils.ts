@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 //random code generator
 export function randomCodeGenerator(length:number):string{
 
@@ -8,4 +10,10 @@ export function randomCodeGenerator(length:number):string{
   }
   return code;
   
+}
+
+export function uuid4(){
+
+  return v4();
+
 }
