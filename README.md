@@ -3,10 +3,9 @@
 ### VALUE OBJETS IN ENTITIES
 ### CQRS AND EVENT SOURCING
 
-### ENVIROMENT
+### ENVIROMENT GLOBALS
 
 Create a .env file in the root file, and add parameters:
-
 
 ### APP
 APP_PORT = <APP_PORT>
