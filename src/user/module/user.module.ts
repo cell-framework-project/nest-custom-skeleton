@@ -21,7 +21,9 @@ import { UserCreateCommandHandler } from 'src/user/cqrs/command/user.create.comm
 import { UserCreatedEventEventHandler } from 'src/user/cqrs/event/user.created.event.handler';
 import { UserListFindQueryHandler } from 'src/user/cqrs/query/user.list.find.query.handler';
 import { UserFindQueryHandler } from 'src/user/cqrs/query/user.find.query.handler';
-import { UserLoggedEventEventHandler } from 'src/user/cqrs/event/user.logged.event.handler';
+import { UserLoginSucceedConsoleEventHandler } from 'src/user/cqrs/event/user.login.succeed.console.event.handler';
+import { UserLoginFailedConsoleEventHandler } from 'src/user/cqrs/event/user.login.failed.console.event.handler';
+
 
 //Middlewares Passport
 import { JwtStrategy } from 'src/user/user.interface/middleware/jwt.strategy';
@@ -33,7 +35,7 @@ import { UserMainController } from 'src/user/user.interface/controller/user.main
 
 //Handlers
 export const CommandHandlers = [ UserCreateCommandHandler ];
-export const EventHandlers = [ UserCreatedEventEventHandler,UserLoggedEventEventHandler ];
+export const EventHandlers = [ UserCreatedEventEventHandler,UserLoginSucceedConsoleEventHandler,UserLoginFailedConsoleEventHandler ];
 export const QueryHandlers =[ UserListFindQueryHandler,UserFindQueryHandler ];
 
 //Module Assembly

@@ -18,4 +18,10 @@ export class UtilsController {
   }
 
 
+  @Get('fixed-length/:number/:length')
+  fixedLength(@Param('length') int: number, @Param('length') length: number) {
+    return this.utilsService.fixedLengthIntegerString(int,length);
+  }
+
+
 }

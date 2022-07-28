@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { v4 as uuid4 } from 'uuid';
 import { randomCodeGenerator } from '../../shared/utils/utils';
+import { uuid4 } from '../../shared/utils/utils';
+import { fixedLengthIntegerString } from '../../shared/utils/utils';
 
 @Injectable()
 export class UtilsService {
 
-  fixedLength(integer:number): number {
-    return integer;
+  fixedLengthIntegerString(int:number,length:number):string {
+    return fixedLengthIntegerString(int,length);
   }
 
   uuidGenerator():string{
