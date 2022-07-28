@@ -32,7 +32,7 @@ export class User extends AggregateRoot {
   hashedPassword: UserHashedPassword;
 
   //main constructor
-  constructor(id:string,nickname:UserNickname,email:UserEmail,hashedPassword:UserHashedPassword,name:UserName,creationDateTime:Date) {
+  constructor(id:string, nickname:UserNickname, email:UserEmail, hashedPassword:UserHashedPassword, name:UserName, creationDateTime:Date) {
     super();
     this.id = id;
     this.nickname = nickname;
