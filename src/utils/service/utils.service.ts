@@ -6,8 +6,8 @@ import { fixedLengthIntegerString } from '../../shared/utils/utils';
 @Injectable()
 export class UtilsService {
 
-  fixedLengthIntegerString(int:number,length:number):string {
-    return fixedLengthIntegerString(int,length);
+  fixedLengthIntegerString(int:number, length:number):string {
+    return fixedLengthIntegerString(int, length);
   }
 
   uuidGenerator():string{
