@@ -18,10 +18,17 @@ export class UtilsController {
   }
 
 
-  @Get('fixed-length/:number/:length')
-  fixedLength(@Param('length') int: number, @Param('length') length: number) {
+  @Get('fixed-length/:int/:length')
+  fixedLength(@Param('int') int: number, @Param('length') length: number) {
+
+    console.log(int);
+
     return this.utilsService.fixedLengthIntegerString(int,length);
   }
 
+  @Get('password-hash/:password')
+  passwordHash(@Param('password') password: string) {
+    return this.utilsService.passwordHash(password);
+  }
 
 }
