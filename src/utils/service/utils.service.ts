@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { randomCodeGenerator } from '../../shared/utils/utils';
-import { uuid4 } from '../../shared/utils/utils';
-import { fixedLengthIntegerString } from '../../shared/utils/utils';
-import { passwordHash } from '../../shared/utils/utils';
+import { randomCodeGenerator } from 'src/shared/utils/utils';
+import { uuid4 } from 'src/shared/utils/utils';
+import { fixedLengthIntegerString } from 'src/shared/utils/utils';
+import { passwordHash } from 'src/shared/utils/utils';
 
 @Injectable()
 export class UtilsService {
