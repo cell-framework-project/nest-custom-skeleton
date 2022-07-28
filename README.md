@@ -34,7 +34,6 @@ JWT_SECRET_KEY = <YOUR_SECRET_KEY>
 JWT_EXPIRES_IN = <EXPIRATION_TIME>
 ```
 
-
 ## Installation
 
 ```bash
