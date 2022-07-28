@@ -1,4 +1,5 @@
 import { v4 } from "uuid";
+import * as bcrypt from 'bcrypt';
 
 export function randomCodeGenerator(length:number):string{
 
@@ -23,4 +24,8 @@ export function fixedLengthIntegerString(int:number,length:number):string{
 
   return '0'.repeat(count) + stringInt;
 
+}
+
+export function passwordHash(password:string):string{
+  return bcrypt.hashSync(password,10);
 }
