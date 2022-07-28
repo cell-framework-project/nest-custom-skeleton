@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import { PasswordValueObject } from './password.value.object';
+import { passwordHash, passwordCompare } from 'src/shared/utils/utils';
 
 export class HashedPasswordValueObject{
 
@@ -10,11 +11,11 @@ export class HashedPasswordValueObject{
   }
 
   assert(password:PasswordValueObject):boolean{
-    return bcrypt.compareSync(password.value,this.value);
+    return passwordCompare(password.value,this.value);
   }
 
   static create(value:string):HashedPasswordValueObject{
-    return new HashedPasswordValueObject(bcrypt.hashSync(value,10));
+    return new HashedPasswordValueObject(passwordHash(value));
   }
 
 }
